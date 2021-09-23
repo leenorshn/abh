@@ -29,7 +29,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(car, personIdx) in products" :key="car.id" :class="personIdx % 2 === 0 ? 'bg-white' : 'bg-gray-50'">
+              <tr v-for="(car, personIdx) in products" :key="car._id" :class="personIdx % 2 === 0 ? 'bg-white' : 'bg-gray-50'">
                 <td class="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                   {{ car.name }}
                 </td>
@@ -44,12 +44,12 @@
                 </td>
                
                 <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                  <a href="#" class="text-indigo-600 hover:text-indigo-900">Effacer</a>
+                  <button @click.prevent="deleteProduct(car._id)" href="#" class="text-indigo-600 hover:text-indigo-900">Effacer</button>
                 </td>
               </tr>
             </tbody>
           </table>
-          {{products}}
+          
         </div>
       </div>
     </div>
@@ -68,7 +68,7 @@ export default {
     this.getProducts();
   },
   methods: {
-    ...mapActions([ "getProducts"]),
+    ...mapActions([ "getProducts","deleteProduct"]),
     
   },
 };
